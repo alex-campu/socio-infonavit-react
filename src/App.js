@@ -1,58 +1,49 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import React, { useState, useEffect } from 'react'
+import logo from './logo.svg'
+import { alreadyLogIn, LoggedOut } from './features/axios/LoginReq'
+import { Login } from './components/Login'
+import { useSelector, useDispatch } from 'react-redux'
+import { LaunchScreen } from './components/LaunchScreen/index'
+import { GlobalStyle } from './components/styles/GlobalStyles'
+import { Ring } from 'react-awesome-spinners'
+import { Benevits } from './components/Benevits/'
+function App () {
+  const Dispatch = useDispatch()
+  const [pageOnLoad, setPageOnLoad] = useState(true)
+  const [fakeLoading, setFakeLoading] = useState(true)
+  const auth = useSelector((state) => state.authenticated)
 
-function App() {
+  useEffect(() => {
+    setTimeout(() =>
+      setFakeLoading(false), 2000)
+  }, [])
+
+  window.onload = function () {
+    setPageOnLoad(false)
+  }
+  const logged = () => Dispatch(alreadyLogIn())
+  const notLogged = () => Dispatch(LoggedOut())
+  useEffect(() => {
+    const auth = window.localStorage.getItem('access')
+    if (auth !== null) {
+      logged()
+    } else {
+      notLogged()
+    }
+  }, [])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
-  );
+    <>
+      <GlobalStyle />
+      {pageOnLoad !== false && fakeLoading !== false && auth === false
+        ? (
+          <>
+            <LaunchScreen />
+          </>
+          )
+        : !auth && <Login />}
+      {auth && <Benevits />}
+    </>
+  )
 }
 
-export default App;
+export default App

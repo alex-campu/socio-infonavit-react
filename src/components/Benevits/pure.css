@@ -1,0 +1,28 @@
+.opneSidebar {
+  transition: 0.7s;
+  width: 230px;
+}
+
+#close {
+  font-size: 4.3rem;
+  position: absolute;
+  right: 2rem;
+  top: 1rem;
+}
+
+.to-right {
+  /* margin-left: 220px; */
+  margin-left: 230px;
+  transition: all 300ms ease-in-out;
+}
+
+.navlist {
+  padding: 1rem 3rem;
+}
+.navlist li {
+  margin: 1rem 0;
+  transition: all 300ms ease-in-out;
+}
+svg {
+  color: white;
+}
