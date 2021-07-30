@@ -4,7 +4,7 @@ export const GlobalStyle = createGlobalStyle`
    body {
     height: 100vh;
     margin: 0 auto;
-    overflow:hidden;
+    overflow:auto;
     background:#f9f9f9;
     width: 100%;
    opacity: ${props => (props.blur ? 0.9 : 1)}     
