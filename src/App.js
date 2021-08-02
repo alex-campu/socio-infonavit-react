@@ -23,14 +23,14 @@ function App () {
   }
   const logged = () => Dispatch(alreadyLogIn())
   const notLogged = () => Dispatch(LoggedOut())
-  useEffect(() => {
-    const auth = window.localStorage.getItem('access')
-    if (auth !== null) {
-      logged()
-    } else {
-      notLogged()
-    }
-  }, [])
+  // useEffect(() => {
+  //   const auth = window.localStorage.getItem('access')
+  //   if (auth !== null) {
+  //     logged()
+  //   } else {
+  //     notLogged()
+  //   }
+  // }, [])
   return (
     <>
       <GlobalStyle />

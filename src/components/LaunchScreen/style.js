@@ -3,7 +3,7 @@ import { fadeIn } from '../styles/animations'
 
 export const Launch = styled.div`
 position:relative;
-  background: #EC5056;
+  background: #EC5056; 
   width:90%;
   margin:5%;
   height:95vh;
